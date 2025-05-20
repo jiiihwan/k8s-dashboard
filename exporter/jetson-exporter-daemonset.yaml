@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: jetson-exporter
+  namespace: monitoring
+  labels:
+    app: jetson-exporter
+spec:
+  selector:
+    matchLabels:
+      app: jetson-exporter
+  template:
+    metadata:
+      labels:
+        app: jetson-exporter
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      containers:
+        - name: jetson-exporter
+          image: yjh2353693/jetson-exporter:latest #혹은 자신이 빌드한 이미지
+          ports:
+            - containerPort: 9101 #9101로 설정
+              name: metrics
+          volumeMounts:
+            - name: jtop-sock
+              mountPath: /run/jtop.sock
+              readOnly: true
+          securityContext:
+            privileged: true
+      volumes:
+        - name: jtop-sock
+          hostPath:
+            path: /run/jtop.sock
+            type: Socket
