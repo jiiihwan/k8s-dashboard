@@ -126,8 +126,9 @@ status:
 sudo iptables -I INPUT -p tcp -s 0.0.0.0/0 -d 155.230.16.159 --dport 31001 -j ACCEPT
 sudo iptables -I INPUT -p tcp -s 0.0.0.0/0 -d 155.230.16.159 --dport 31002 -j ACCEPT
 ```
-### Helm values.yaml 수정
-```
-helm get values prometheus --namespace monitoring > values.yaml
-helm upgrade prometheus prometheus-community/kube-prometheus-stack -f values.yaml --namespace monitoring
-```
+
+
+## Helm values.yaml 수정
+`helm get values prometheus --namespace monitoring > values.yaml`
+
+[helm_setting.md](helm_setting.md) 참고
