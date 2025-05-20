@@ -1,7 +1,7 @@
 # helm values.yaml
 - helm으로 설치할 때 설정값들을 적용하는 파일
 - prometheus-stack의 원본 values.yaml은 2000줄이 넘어 수정하기 힘들다
-- 그래서 USER-SUPPLIED VALUES: 옵션으로 필요한 부분만 적고 `helm upgrade`로 적용시켜준다
+- 그래서 USER-SUPPLIED VALUES: 옵션으로 필요한 부분만 적고 `helm upgrade`로 업데이트 시켜준다
 
 ## 주요 수정점
 1. nodeSelector로 워커노드말고 마스터 노드에 prometheus-stack의 요소들이 설치되도록 함
