@@ -3,31 +3,7 @@
 - linux service가 아닌 k8s의 pod로 띄울 수 있게 변형했다
 
 ## 1) Dockerfile 작성
-```Dockerfile
-#참고로 버전(r36.2.0)은 홈페이지에서 잘 보고 적어야함
-#https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-base
-FROM nvcr.io/nvidia/l4t-base:r36.2.0
-
-# 컨테이너 내 작업 디렉토리 설정
-WORKDIR /opt/jetson_exporter
-
-# 필수 패키지 설치
-RUN apt-get update && apt-get install -y python3-pip curl && \
-    pip3 install jetson_stats prometheus_client
-
-# requirements.txt 복사 + 설치
-COPY requirements.txt .
-RUN pip3 install -r requirements.txt
-
-# jetson_stats_node_exporter 모듈 전체 복사
-COPY jetson_stats_node_exporter ./jetson_stats_node_exporter
-
-# Prometheus가 수집할 포트 열기
-EXPOSE 9101
-
-# 모듈을 실행
-ENTRYPOINT ["python3", "-m", "jetson_stats_node_exporter", "--port=9101"]
-```
+[Dockerfile](Dockerfile) 참고
 
 ## 2) nerdctl 및 buidkit 설치
 ```bash
@@ -88,43 +64,8 @@ nerdctl push yjh2353693/jetson-exporter:latest
 
 `vim jetson-exporter-daemonset.yaml`
 
-```yaml
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: jetson-exporter
-  namespace: monitoring
-  labels:
-    app: jetson-exporter
-spec:
-  selector:
-    matchLabels:
-      app: jetson-exporter
-  template:
-    metadata:
-      labels:
-        app: jetson-exporter
-    spec:
-      nodeSelector:
-        kubernetes.io/arch: arm64
-      containers:
-        - name: jetson-exporter
-          image: yjh2353693/jetson-exporter:latest #혹은 자신이 빌드한 이미지
-          ports:
-            - containerPort: 9101 #9101로 설정
-              name: metrics
-          volumeMounts:
-            - name: jtop-sock
-              mountPath: /run/jtop.sock
-              readOnly: true
-          securityContext:
-            privileged: true
-      volumes:
-        - name: jtop-sock
-          hostPath:
-            path: /run/jtop.sock
-            type: Socket
-```
+[jetson-exporter-daemonset.yaml](jetson-exporter-daemonset.yaml) 참고
+
 ```bash
 kubectl apply -f jetson-exporter-daemonset.yaml
 kubectl get pods -n monitoring -o wide
@@ -135,22 +76,9 @@ kubectl rollout restart daemonset jetson-exporter -n monitoring
 
 ## 5) 서비스 설정
 `vim jetson-exporter-service.yaml`
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: jetson-exporter
-  namespace: monitoring
-  labels:
-    app: jetson-exporter
-spec:
-  selector:
-    app: jetson-exporter
-  ports:
-    - name: metrics
-      port: 9101
-      targetPort: 9101
-```
+
+[jetson-exporter-service.yaml](jetson-exporter-service.yaml) 참고
+
 <details>
 <summary> <strong> <h2> 📌[동작과정] </strong> </summary>
 
