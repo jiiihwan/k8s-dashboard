@@ -10,7 +10,7 @@
    - 추가로 수집주기는 1초로 설정
 4. node-exporter의 수집주기를 1초로 설정
 
-### values.yaml
+### values.yaml 파일
 [values.yaml](values.yaml) 참고
 
 ### 작성 후 적용
