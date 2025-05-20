@@ -11,61 +11,7 @@
 4. node-exporter의 수집주기를 1초로 설정
 
 ### values.yaml
-
-```yaml
-USER-SUPPLIED VALUES:
-alertmanager:
-  alertmanagerSpec:
-    nodeSelector:
-      key: master
-    tolerations:
-    - effect: NoSchedule
-      key: node-role.kubernetes.io/control-plane
-      operator: Exists
-grafana:
-  grafana.ini:
-    dashboards:
-      min_refresh_interval: 1s
-  nodeSelector:
-    key: master
-  tolerations:
-  - effect: NoSchedule
-    key: node-role.kubernetes.io/control-plane
-    operator: Exists
-kube-state-metrics:
-  nodeSelector:
-    key: master
-  tolerations:
-  - effect: NoSchedule
-    key: node-role.kubernetes.io/control-plane
-    operator: Exists
-prometheus:
-  prometheusSpec:
-    nodeSelector:
-      key: master
-    tolerations:
-    - effect: NoSchedule
-      key: node-role.kubernetes.io/control-plane
-      operator: Exists
-    additionalScrapeConfigs:
-    - job_name: "nvidia_gpu_exporter"
-      scrape_interval: 1s
-      static_configs:
-      - targets:
-        - "<IP>:<PORT>"
-prometheus-node-exporter:
-  enabled: true
-  serviceMonitor:
-    interval: 1s
-    scrapeTimeout: 1s
-prometheusOperator:
-  nodeSelector:
-    key: master
-  tolerations:
-  - effect: NoSchedule
-    key: node-role.kubernetes.io/control-plane
-    operator: Exists
-```
+[values.yaml](values.yaml) 참고
 
 ### 작성 후 적용
 `helm upgrade prometheus prometheus-community/kube-prometheus-stack -n monitoring -f values.yaml`
