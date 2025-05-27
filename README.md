@@ -38,7 +38,7 @@
 - Optimized for automated installation and simplified management
   - It is inspired by how Node-exporter is installed via `prometheus-stack`
 
-  See [jetson-exporter_installation.md](jetson-exporter_installation.md) for details
+  See [jetson-exporter_installation.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/jetson-exporter_installation.md) for details
 
 ### Nvidia-exporter
 - export GPU usage of Nvidia GPU by using `nvidia-smi`
