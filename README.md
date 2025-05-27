@@ -22,13 +22,13 @@
 
 ## k8s dashboard
 
-  See [k8s_dashboard_installation.md](k8s_dashboard_installation.md) for details
+  See [k8s_dashboard_installation.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/k8s/k8s_dashboard_installation.md) for details
 
 
 ## Prometheus-stack
 
 
-  See [Prometheus-stack installation.md](installation.md) for details
+  See [prometheus_stack_installation.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus&Grafana/prometheus_stack_installation.md) for details
 
 ## Exporters
 - Used Jetson-exporter & Nvidia-exporter to export GPU usage
