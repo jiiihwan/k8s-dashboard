@@ -1,6 +1,6 @@
 # k8s-dashboard
 > ### k8s dashboard with real-time resource utilization
-## Supported resoureces
+## Supported resources
   - CPU utilizaiton (%) 
     - with core utilizaion
   - GPU utilization (%)
