@@ -64,7 +64,7 @@ nerdctl push yjh2353693/jetson-exporter:latest
 
 `vim jetson-exporter-daemonset.yaml`
 
-[jetson-exporter-daemonset.yaml](jetson-exporter-daemonset.yaml) 참고
+[jetson-exporter-daemonset.yaml](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/jetson-exporter-daemonset.yaml) 참고
 
 ```bash
 kubectl apply -f jetson-exporter-daemonset.yaml
@@ -74,10 +74,19 @@ kubectl get pods -n monitoring -o wide
 kubectl rollout restart daemonset jetson-exporter -n monitoring
 ```
 
-## 5) 서비스 설정
+## 5) 서비스 & 서비스모니터 설정
 `vim jetson-exporter-service.yaml`
 
-[jetson-exporter-service.yaml](jetson-exporter-service.yaml) 참고
+[jetson-exporter-service.yaml](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/jetson-exporter-service.yaml) 참고
+
+`vim jetson-exporter-servicemonitor.yaml`
+
+[jetson-exporter-servicemonitor.yaml](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/jetson-exporter-servicemonitor.yaml) 참고
+
+```bash
+kubectl apply -f jetson-exporter-service.yaml -n monitoring
+kubectl apply -f jetson-exporter-servicemonitor.yaml -n monitoring
+```
 
 <details>
 <summary> <strong> <h2> 📌[동작과정] </strong> </summary>
