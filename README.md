@@ -43,7 +43,7 @@
 ### Nvidia-exporter
 - export GPU usage of Nvidia GPU by using `nvidia-smi`
 
-  See [[nvidia-exporter_installation.md](nvidia-exporter_installation.md)](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/nvidia-exporter_installation.md) for details
+  See [nvidia-exporter_installation.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/nvidia-exporter_installation.md) for details
 
 
 ---
