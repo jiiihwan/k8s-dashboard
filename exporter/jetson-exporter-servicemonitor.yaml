@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jetson-exporter
+  namespace: monitoring
+  labels:
+    release: prometheus  # ← Helm 설치 시 release 이름
+spec:
+  selector:
+    matchLabels:
+      app: jetson-exporter
+  endpoints:
+    - port: metrics
+      interval: 1s
+  namespaceSelector:
+    matchNames:
+      - monitoring
