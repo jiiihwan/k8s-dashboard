@@ -1,4 +1,4 @@
-# Nvidia-exporet installation
+# Nvidia-exporter installation
 - https://github.com/utkuozdemir/nvidia_gpu_exporter 참고
 - jetson-exporter와 다르게 desktop master node용이기 때문에 리눅스 백그라운드 서비스로 동작한다
 
