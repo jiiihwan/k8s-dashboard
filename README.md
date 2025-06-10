@@ -40,12 +40,15 @@ This system operates on a Kubernetes cluster, where Prometheus collects metrics 
 
 There is specific guidelines in each folder
 
+### kubernetes
+
+See [kubernetes_README.md]() for details
+
 ### k8s dashboard
 
 See [k8s_dashboard_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/k8s/k8s_dashboard_installation.md) for details
 
-
-### Prometheus-stack
+### Prometheus & Grafana
 
 See [prometheus_stack_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus&Grafana/prometheus_stack_installation.md) for details
 
@@ -53,18 +56,17 @@ See [prometheus_stack_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/
 
 Used Jetson-exporter & Nvidia-exporter to export GPU usage
 
+#### Nvidia-exporter
+- export GPU usage of Nvidia GPU by using `nvidia-smi`
+
+See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/nvidia-exporter_installation.md) for details
+
 #### Jetson-exporter
 - Export GPU usage of jetson orin nano by using `jetson-stats`
 - Optimized for automated installation and simplified management
   - It is inspired by how Node-exporter is installed via `prometheus-stack`
 
 See [jetson-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/jetson-exporter_installation.md) for details
-
-#### Nvidia-exporter
-- export GPU usage of Nvidia GPU by using `nvidia-smi`
-
-See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/nvidia-exporter_installation.md) for details
-
 
 ---
 
