@@ -68,6 +68,7 @@ kubectl get svc -n kubernetes-dashboard
 
 ### 🔗 4. NodePort로 외부접속 설정
 NodePort는 쿠버네티스(Kubernetes)에서 서비스(Service)를 외부에 노출하는 방법 중 하나이다.
+
 k8s dashboard 페이지를 마스터노드 뿐만 아니라 외부에서도 볼 수 있게 하기 위해서 외부접속 설정을 한다.
 open하는 포트는 여기서는 31000포트를 사용했다.
 
@@ -171,6 +172,7 @@ kubectl delete namespace kubernetes-dashboard --force --grace-period=0
 > Kubernetes 클러스터 내에서 각 노드와 파드(Pod)의 리소스 사용량(CPU, 메모리 등) 데이터를 수집·집계하여, 이를 Kubernetes API 서버에 제공하는 경량화된 서비스
 
 쿠버네티스 대쉬보드에서 cpu와 메모리사용량을 보려면 metrics-server를 설치해야한다
+
 이때 namespace는 원래 `kube-system`에 설치되지만 이전에 dashboard를 설치한 곳에 통합적으로 설치하기 위해 `kubernetes-dashboard` namespace에 깔리도록 수정한다.
 
 ### 📄 metrics-server의 yaml파일 작성
