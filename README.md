@@ -40,19 +40,19 @@ This system operates on a Kubernetes cluster, where Prometheus collects metrics 
 
 There is specific guidelines in each folder
 
-### kubernetes
+### 1. kubernetes
 
 See [kubernetes_README.md]() for details
 
-### k8s dashboard
+### 2. k8s dashboard
 
 See [k8s_dashboard_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/k8s/k8s_dashboard_installation.md) for details
 
-### Prometheus & Grafana
+### 3. Prometheus & Grafana
 
 See [prometheus_stack_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus&Grafana/prometheus_stack_installation.md) for details
 
-### Exporters
+### 4. Exporters
 
 Used Jetson-exporter & Nvidia-exporter to export GPU usage
 
