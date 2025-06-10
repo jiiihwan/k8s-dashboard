@@ -1,7 +1,8 @@
 # 💻k8s-dashboard
 > ### k8s dashboard with real-time resource utilization
 
-기존의 k8s dashboard가 지원하지 않는 GPU사용량을 포함한 노드의 실시간 리소스 사용량을 프로메테우스와 그라파나를 이용해 구현한 dashboard.
+A custom dashboard implemented using Prometheus and Grafana to monitor real-time resource usage of nodes, including GPU utilization, which is not supported by the default Kubernetes dashboard.
+
 
 ### 📢Supported resources
   1. **CPU** utilizaiton (%)
