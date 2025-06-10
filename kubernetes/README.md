@@ -1,5 +1,13 @@
-# kubernetes 설치
-먼저 쿠버네티스 설치를 한다.
+# 🛠️ kubernetes 설치
+쿠버네티스 설치방법 소개
+
+## 🔧 환경 세팅
+| Node Type     | Device                          |
+|---------------|----------------------------------|
+| Master Node   | Desktop (Ubuntu 22.04)          |
+| Worker Node   | 2 × NVIDIA Jetson Orin Nano     |
+
+Container runtime 은 containerd 를 사용했다.
 
 ### Swap 비활성화
 ```bash
