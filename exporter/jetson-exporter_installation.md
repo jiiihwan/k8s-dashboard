@@ -1,11 +1,15 @@
-# jetson stats exporter설치
+# 🛠️ jetson stats exporter설치
 - based on https://github.com/laminair/jetson_stats_node_exporter
 - linux service가 아닌 k8s의 pod로 띄울 수 있게 변형했다
 
-## 1) Dockerfile 작성
+## 📄 1. Dockerfile 작성
+```bash
+vim Dockerfile
+```
+
 [Dockerfile](Dockerfile) 참고
 
-## 2) nerdctl 및 buidkit 설치
+## 🔨 2. nerdctl 및 buidkit 설치
 ```bash
 mkdir nerdctl
 cd nerdctl
@@ -37,7 +41,7 @@ nerdctl --version
 sudo nohup buildkitd > /dev/null 2>&1 &
 ```
 
-## 3) 이미지 build & push
+## 🐋 3. 이미지 build & push
 
 ### l4t basefile 을 위해서 ngc회원가입 및 로그인
 - api키 발급(https://org.ngc.nvidia.com/setup/api-keys)
@@ -58,7 +62,7 @@ nerdctl build -t yjh2353693/jetson-exporter:latest .
 nerdctl push yjh2353693/jetson-exporter:latest
 ```
 
-## 4) Daemonset 작성 및 배포
+## 📤 4. Daemonset 작성 및 배포
 - 마스터노드에서 작성
 - 포트는 metrics-server가 기본적으로 9100포트를 사용하고 있으므로 9101포트를 사용하도록 한다
 
@@ -74,7 +78,7 @@ kubectl get pods -n monitoring -o wide
 kubectl rollout restart daemonset jetson-exporter -n monitoring
 ```
 
-## 5) 서비스 & 서비스모니터 설정
+## 🖥️ 5. 서비스 & 서비스모니터 설정
 `vim jetson-exporter-service.yaml`
 
 [jetson-exporter-service.yaml](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/jetson-exporter-service.yaml) 참고
