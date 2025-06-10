@@ -1,10 +1,10 @@
-# 💻k8s-dashboard
+# 💻 k8s-dashboard
 > ### k8s dashboard with real-time resource utilization
 
 A custom dashboard implemented using Prometheus and Grafana to monitor real-time resource usage of nodes, including GPU utilization, which is not supported by the default Kubernetes dashboard.
 
 
-### 📢Supported resources
+### 📢 Supported resources
   1. **CPU** utilizaiton (%)
      - with core utilizaion
   3. **GPU** utilization (%)
@@ -12,7 +12,7 @@ A custom dashboard implemented using Prometheus and Grafana to monitor real-time
   5. **Network** utilization (Bit/sec)
      - transmitted & received
    
-### ⚙️k8s environmental settings
+### ⚙️ k8s environmental settings
 
 | Node Type     | Device                          |
 |---------------|----------------------------------|
@@ -21,7 +21,7 @@ A custom dashboard implemented using Prometheus and Grafana to monitor real-time
 
 
 
-## 🧱System Architecture
+## 🧱 System Architecture
 This system operates on a Kubernetes cluster, where Prometheus collects metrics from exporters installed on each worker node and visualizes them in real-time via Grafana. The system works as follows:
 
 ![스크린샷 2025-04-30 170154](https://github.com/user-attachments/assets/4c36a81c-f39f-44c5-a279-58f6f5467029)
@@ -36,7 +36,7 @@ This system operates on a Kubernetes cluster, where Prometheus collects metrics 
 
 5) Grafana visualizes the data collected by Prometheus using PromQL queries. Users can monitor the real-time status of CPU, GPU, memory, and network usage for each node and the entire cluster, providing intuitive insights into resource utilization.
 
-## 🛠️Installation
+## 🛠️ Installation
 
 There is specific guidelines in each folder
 
@@ -68,7 +68,7 @@ See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/m
 
 ---
 
-## 🔋Grafana UI implementation
+## 🔋 Grafana UI implementation
 ![스크린샷 2025-04-08 135758](https://github.com/user-attachments/assets/f8c5a38a-8382-4edc-b511-a6b56bd2e01a)
 
 - In order from the top row : CPU, GPU, RAM, Network
