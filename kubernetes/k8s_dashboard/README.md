@@ -55,7 +55,7 @@ tolerations: #toleration은 이렇게 수정
 ```
 
 ### 🔨 3. 변경한 values 파일 이용해서 설치
-kubernetes-dashboard 라는 네임스페이스를 생성해서 그곳에 설치한다.
+`kubernetes-dashboard` 라는 네임스페이스를 생성해서 그곳에 설치한다.
 
 ```bash
 helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard -f values.yaml --version 7.5.0 --namespace kubernetes-dashboard --create-namespace
@@ -82,8 +82,7 @@ kubectl get service kubernetes-dashboard-kong-proxy -n kubernetes-dashboard
 kubectl edit service kubernetes-dashboard-kong-proxy -n kubernetes-dashboard
 ```
 
-`type: NodePort` 를 입력하고 `:wq` 입력 후에 다시 명령어를 입력해서 `nodePort: <port>` 가 생기면 포트를 바꿔주도록 하자
-
+`type: NodePort` 를 입력하고 `:wq` 입력 후에 다시 명령어를 입력해서 `nodePort: <port>` 가 생기면 포트를 바꿔주도록 하자. 
 한번에 바꾸면 에러가 나는 경우가 잦다.
 
 ```yaml
@@ -155,7 +154,7 @@ kubectl -n kubernetes-dashboard create token admin-user --duration 720h #토큰�
 ```
 
 ### 🗑️tip) 네임스페이스 지우기
-잘못 설치했다면 네임스페이스 지우면 관련 설정이 모두 지워진다
+잘못 설치했다면 네임스페이스를 지우면 관련 설정이 모두 지워진다
 ```bash
 kubectl delete ns kubernetes-dashboard
 ```
