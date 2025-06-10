@@ -1,7 +1,9 @@
 # 💻k8s-dashboard
 > ### k8s dashboard with real-time resource utilization
 
-## 📢Supported resources
+기존의 k8s dashboard가 지원하지 않는 GPU사용량을 포함한 노드의 실시간 리소스 사용량을 프로메테우스와 그라파나를 이용해 구현한 dashboard.
+
+### 📢Supported resources
   1. **CPU** utilizaiton (%)
      - with core utilizaion
   3. **GPU** utilization (%)
@@ -9,21 +11,19 @@
   5. **Network** utilization (Bit/sec)
      - transmitted & received
    
-## ⚙️k8s environmental settings
+### ⚙️k8s environmental settings
 
 | Node Type     | Device                          |
 |---------------|----------------------------------|
 | Master Node   | Desktop (Ubuntu 22.04)          |
 | Worker Node   | 2 × NVIDIA Jetson Orin Nano     |
 
----
+
 
 ## 🧱System Architecture
+This system operates on a Kubernetes cluster, where Prometheus collects metrics from exporters installed on each worker node and visualizes them in real-time via Grafana. The system works as follows:
 
 ![스크린샷 2025-04-30 170154](https://github.com/user-attachments/assets/4c36a81c-f39f-44c5-a279-58f6f5467029)
-
-### 
-This system operates on a Kubernetes cluster, where Prometheus collects metrics from exporters installed on each worker node and visualizes them in real-time via Grafana. The system works as follows:
 
 1) Prometheus Operator is a controller that manages Prometheus-related monitoring resources within Kubernetes. Users can define resources such as Prometheus and ServiceMonitor as Custom Resources (CRs), and the Operator automatically detects and updates configurations based on these definitions.
 
@@ -35,34 +35,34 @@ This system operates on a Kubernetes cluster, where Prometheus collects metrics 
 
 5) Grafana visualizes the data collected by Prometheus using PromQL queries. Users can monitor the real-time status of CPU, GPU, memory, and network usage for each node and the entire cluster, providing intuitive insights into resource utilization.
 
-# 🛠️Installation
+## 🛠️Installation
 
 There is specific guidelines in each folder
 
-## k8s dashboard
+### k8s dashboard
 
-See [k8s_dashboard_installation.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/k8s/k8s_dashboard_installation.md) for details
+See [k8s_dashboard_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/k8s/k8s_dashboard_installation.md) for details
 
 
-## Prometheus-stack
+### Prometheus-stack
 
-See [prometheus_stack_installation.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus&Grafana/prometheus_stack_installation.md) for details
+See [prometheus_stack_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus&Grafana/prometheus_stack_installation.md) for details
 
-## Exporters
+### Exporters
 
 Used Jetson-exporter & Nvidia-exporter to export GPU usage
 
-### Jetson-exporter
+#### Jetson-exporter
 - Export GPU usage of jetson orin nano by using `jetson-stats`
 - Optimized for automated installation and simplified management
   - It is inspired by how Node-exporter is installed via `prometheus-stack`
 
-See [jetson-exporter_installation.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/jetson-exporter_installation.md) for details
+See [jetson-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/jetson-exporter_installation.md) for details
 
-### Nvidia-exporter
+#### Nvidia-exporter
 - export GPU usage of Nvidia GPU by using `nvidia-smi`
 
-See [nvidia-exporter_installation.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/nvidia-exporter_installation.md) for details
+See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/nvidia-exporter_installation.md) for details
 
 
 ---
