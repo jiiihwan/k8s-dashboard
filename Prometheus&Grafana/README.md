@@ -1,4 +1,4 @@
-# Prometheus, Grafana  Helm이용 설치
+# ⚙️ Prometheus, Grafana  Helm이용 설치
 - 다음 5개는 마스터노드에 설치한다
     - alertmanager
     - grafana
