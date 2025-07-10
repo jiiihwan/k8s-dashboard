@@ -42,11 +42,11 @@ There is specific guidelines in each folder
 
 ### 1. kubernetes
 
-See [kubernetes_README.md]() for details
+See [kubernetes_README.md](https://github.com/jiiihwan/k8s-dashboard/tree/main/kubernetes) for details
 
 ### 2. k8s dashboard
 
-See [k8s_dashboard_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/k8s/k8s_dashboard_installation.md) for details
+See [k8s_dashboard_README.md](https://github.com/jiiihwan/k8s-dashboard/tree/main/kubernetes/k8s_dashboard) for details
 
 ### 3. Prometheus & Grafana
 
