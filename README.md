@@ -11,6 +11,7 @@ A custom dashboard implemented using Prometheus and Grafana to monitor real-time
   4. **RAM** utilization (GB & %)
   5. **Network** utilization (Bit/sec)
      - transmitted & received
+  6. **NPU** utilization (%)
    
 ### ⚙️ k8s environmental settings
 
