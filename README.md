@@ -70,14 +70,14 @@ See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/m
 
 #### 4.2 Jetson_exporter
 Export GPU usage of jetson orin nano by using `jtop`
-Optimized for automated installation and simplified management
-It is inspired by how Node-exporter is installed via `prometheus-stack`
+
+Optimized for automated installation and simplified management, and it is inspired by how Node-exporter is installed via `prometheus-stack`
 
 See https://github.com/jiiihwan/jetson_exporter for details
 
 #### 4.3 Hailo_exporter
 Export Hailo NPU usage on Raspberry Pi 5 by analyzing a protobuf binary file
-Also optimized for automated installation and simplified management]
+Also optimized for automated installation and simplified management.
 
 See https://github.com/jiiihwan/hailo_exporter for details
 
