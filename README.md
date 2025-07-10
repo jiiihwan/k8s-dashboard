@@ -24,7 +24,8 @@ A custom dashboard implemented using Prometheus and Grafana to monitor real-time
 ## 🧱 System Architecture
 This system operates on a Kubernetes cluster, where Prometheus collects metrics from exporters installed on each worker node and visualizes them in real-time via Grafana. The system works as follows:
 
-![스크린샷 2025-04-30 170154](https://github.com/user-attachments/assets/4c36a81c-f39f-44c5-a279-58f6f5467029)
+![스크린샷 2025-07-10 155012](https://github.com/user-attachments/assets/f76048d4-f741-41ec-9a56-f105da05756a)
+
 
 1) Prometheus Operator is a controller that manages Prometheus-related monitoring resources within Kubernetes. Users can define resources such as Prometheus and ServiceMonitor as Custom Resources (CRs), and the Operator automatically detects and updates configurations based on these definitions.
 
