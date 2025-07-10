@@ -18,6 +18,7 @@ A custom dashboard implemented using Prometheus and Grafana to monitor real-time
 |---------------|----------------------------------|
 | Master Node   | Desktop (Ubuntu 22.04)          |
 | Worker Node   | 2 × NVIDIA Jetson Orin Nano     |
+| Worker Node   | 1 × Raspberry pi 5 with Hailo     |
 
 
 
@@ -70,7 +71,7 @@ See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/m
 See https://github.com/jiiihwan/jetson_exporter for details
 
 #### 4.3 Hailo_exporter
-- Export NPU usage of Hailo on Raspbarry pi 5 by analyzing protobuf binary file.
+- Export Hailo NPU usage on Raspberry Pi 5 by analyzing a protobuf binary file
 - Also optimized for automated installation and simplified management]
 
 See https://github.com/jiiihwan/hailo_exporter for details
