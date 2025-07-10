@@ -30,6 +30,7 @@ kubectl get nodes --show-labels
 kubectl label nodes [node_name] key=master
 ```
 ### 프로메테우스 및 그라파나 설치 with NodeSelector
+설치할때 alertmanager, grafana, state metrics, prometheus operator, prometheus는 옵션으로 nodeSelector를 이용해서 마스터 노드에 설치한다
 ```
 helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring \
 --set prometheus.prometheusSpec.nodeSelector.key=master \
@@ -54,7 +55,9 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --n
 --set kube-state-metrics.tolerations[0].effect="NoSchedule"
 ```
 ### 확인
-`kubectl get svc -n monitoring`
+```
+kubectl get svc -n monitoring
+```
 
 ### NodePort 수정
 - 서비스 파일을 수정
@@ -134,6 +137,7 @@ sudo iptables -I INPUT -p tcp -s 0.0.0.0/0 -d <IP> --dport 31002 -j ACCEPT
 
 
 ## Helm values.yaml 수정
+이전에 적용했던 value 세팅 파일 다운로드 하는 방법
 ```
 helm get values prometheus --namespace monitoring > values.yaml
 ```
