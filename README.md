@@ -53,7 +53,7 @@ See [k8s_dashboard_README.md](https://github.com/jiiihwan/k8s-dashboard/tree/mai
 
 ### 3. Prometheus & Grafana
 
-See [prometheus_stack_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus&Grafana/prometheus_stack_installation.md) for details
+See [prometheus_stack_README.md](https://github.com/jiiihwan/k8s-dashboard/tree/main/Prometheus%26Grafana) for details
 
 ### 4. Exporters
 
