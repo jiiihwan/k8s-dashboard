@@ -56,19 +56,19 @@ See [prometheus_stack_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/
 
 Used Jetson-exporter & Nvidia-exporter to export GPU usage
 
-#### Nvidia-exporter
+#### 4.1 Nvidia-exporter
 - export GPU usage of Nvidia GPU by using `nvidia-smi`
 
 See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/nvidia-exporter_installation.md) for details
 
-#### Jetson_exporter
+#### 4.2 Jetson_exporter
 - Export GPU usage of jetson orin nano by using `jtop`
 - Optimized for automated installation and simplified management
   - It is inspired by how Node-exporter is installed via `prometheus-stack`
 
 See https://github.com/jiiihwan/jetson_exporter for details
 
-#### Hailo_exporter
+#### 4.3 Hailo_exporter
 - Export NPU usage of Hailo on Raspbarry pi 5 by analyzing protobuf binary file.
 - Also optimized for automated installation and simplified management]
 
