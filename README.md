@@ -57,7 +57,11 @@ See [prometheus_stack_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/
 
 ### 4. Exporters
 
-Used Jetson-exporter & Nvidia-exporter to export GPU usage
+Used Jetson-exporter & Nvidia-exporter to export GPU usage and Hailo-exporter for NPU usage.
+
+- Nvidia-exporter for Master Node Desktop
+- Jetson-exporter for Jetson Orin Nano
+- Hailo-exporter for Hailo of Raspberry pi 5
 
 #### 4.1 Nvidia-exporter
 - export GPU usage of Nvidia GPU by using `nvidia-smi`
