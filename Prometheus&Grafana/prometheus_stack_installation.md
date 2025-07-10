@@ -58,11 +58,16 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --n
 
 ### NodePort 수정
 - 서비스 파일을 수정
+    - 주석에 달린 부분 두 곳을 수정 후 저장 
 - NodePort 이용하여 외부에서도 접속이 가능하게 한다
 - Prometheus는 31001 포트, Grafana는 31002 포트를 사용했다
 
-`kubectl edit svc prometheus-kube-prometheus-prometheus -n monitoring`
-`kubectl edit svc prometheus-grafana -n monitoring`
+```
+kubectl edit svc prometheus-kube-prometheus-prometheus -n monitoring
+```
+```
+kubectl edit svc prometheus-grafana -n monitoring
+```
 
 ```yaml
 # Please edit the object below. Lines beginning with a '#' will be ignored,
@@ -123,12 +128,14 @@ status:
 
 ### 리눅스에서 포트포워딩
 ```
-sudo iptables -I INPUT -p tcp -s 0.0.0.0/0 -d 155.230.16.159 --dport 31001 -j ACCEPT
-sudo iptables -I INPUT -p tcp -s 0.0.0.0/0 -d 155.230.16.159 --dport 31002 -j ACCEPT
+sudo iptables -I INPUT -p tcp -s 0.0.0.0/0 -d <IP> --dport 31001 -j ACCEPT
+sudo iptables -I INPUT -p tcp -s 0.0.0.0/0 -d <IP> --dport 31002 -j ACCEPT
 ```
 
 
 ## Helm values.yaml 수정
-`helm get values prometheus --namespace monitoring > values.yaml`
+```
+helm get values prometheus --namespace monitoring > values.yaml
+```
 
 [helm_setting.md](helm_setting.md) 참고
