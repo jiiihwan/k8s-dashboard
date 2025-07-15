@@ -66,7 +66,7 @@ Used Jetson-exporter & Nvidia-exporter to export GPU usage and Hailo-exporter fo
 #### 4.1 Nvidia-exporter
 export GPU usage of Nvidia GPU by using `nvidia-smi`
 
-See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/blob/main/exporter/nvidia-exporter_installation.md) for details
+See [nvidia-exporter_README.md](https://github.com/jiiihwan/k8s-dashboard/tree/main/nvidia-exporter) for details
 
 #### 4.2 Jetson_exporter
 Export GPU usage of jetson orin nano by using `jtop`
