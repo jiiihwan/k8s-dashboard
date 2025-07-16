@@ -9,7 +9,7 @@
 ### 버전 변수 설정
 https://github.com/utkuozdemir/nvidia_gpu_exporter/releases 에서 최신 릴리즈 버전 확인
 
-ex)
+ex) 1.3.0 이라면
 ```bash
 VERSION=1.3.0
 ```
