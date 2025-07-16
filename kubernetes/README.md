@@ -115,6 +115,14 @@ kubeadm join <IP:PORT> --token <token> --discovery-token-ca-cert-hash sha256:<ha
 sudo kubectl get node
 ```
 
+### kubectl 사용자 접근 설정
+마스터 노드의 root계정이 아닌 현재 사용자계정이 `kubectl` 명령어를 사용할 수 있게 접근권한 설정
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
 ### tip) join키 다시 발급받기
 만약 join키를 잃어버려다면 마스터노드에서 다시 발급받을 수 있다.
 ```bash
