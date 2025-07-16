@@ -7,6 +7,9 @@
 아래 내용은 위 참고 링크의 [리눅스 서비스 설치방법](https://github.com/utkuozdemir/nvidia_gpu_exporter/blob/master/INSTALL.md)을 그대로 설명한 것이다.
 
 ### 버전 변수 설정
+https://github.com/utkuozdemir/nvidia_gpu_exporter/releases 에서 최신 릴리즈 버전 확인
+
+ex)
 ```bash
 VERSION=1.3.0
 ```
