@@ -93,5 +93,6 @@ See https://github.com/jiiihwan/hailo_exporter for details
 
 You can applicate same grafana dashboard by using under json files
 [K8s Cluster Dashboard.json](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus%26Grafana/K8s%20Cluster%20Dashboard.json)
+
 [K8s Cluster Dashboard with RPI.json](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus%26Grafana/K8s%20Cluster%20Dashboard%20with%20RPI.json)
 
