@@ -90,3 +90,6 @@ See https://github.com/jiiihwan/hailo_exporter for details
 - In order from the left column : Cluster, Master Node, Worker Node1, Worker Node2
 - The rightmost one : Per-core CPU usage of orin nano
 - A pie chart was placed in the cluster section of the network to show the usage ratio by node
+
+you can applicate dashboard by using
+
