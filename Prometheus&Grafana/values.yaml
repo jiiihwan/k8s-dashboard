@@ -37,7 +37,7 @@ prometheus:
       scrape_interval: 1s
       static_configs:
       - targets:
-        - "<IP>:<PORT>"
+        - "<IP>:9853" //default port = 9853
 prometheus-node-exporter:
   enabled: true
   serviceMonitor:
