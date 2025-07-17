@@ -1,0 +1,40 @@
+NOTICE
+
+This project includes or integrates the following third-party open source components.
+Each component is governed by its own license as noted below.
+
+---
+
+1. Kubernetes Dashboard
+   - Repository: https://github.com/kubernetes/dashboard
+   - License: Apache License 2.0
+
+2. Kubernetes (Manifests, System YAMLs)
+   - Repository: https://github.com/kubernetes/kubernetes
+   - License: Apache License 2.0
+
+3. Prometheus
+   - Repository: https://github.com/prometheus/prometheus
+   - License: Apache License 2.0
+
+4. Grafana
+   - Repository: https://github.com/grafana/grafana
+   - License: GNU Affero General Public License v3.0 (AGPL-3.0)
+   - Note: Grafana is a trademark of Grafana Labs.
+   - Note: This project includes Grafana dashboard JSON templates which were modified for internal monitoring.
+
+5. kube-prometheus-stack (Helm Chart)
+   - Repository: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+   - License: Apache License 2.0
+   - This project includes:
+     - Modified `values.yaml`
+     - Custom recording rules
+     - ServiceMonitor/PodMonitor examples
+
+---
+
+General Notes:
+
+- This project is licensed under the MIT License.
+- This NOTICE file is provided in accordance with Apache 2.0 and AGPL-3.0 license requirements.
+- This project is **not affiliated with or endorsed by** the CNCF, the Prometheus Authors, or Grafana Labs.
