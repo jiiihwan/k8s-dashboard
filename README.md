@@ -91,7 +91,7 @@ See https://github.com/jiiihwan/hailo_exporter for details
 - The rightmost one : Per-core CPU usage of orin nano
 - A pie chart was placed in the cluster section of the network to show the usage ratio by node
 
-You can applicate same grafana dashboard by using under json files
+You can apply the same Grafana dashboard using the JSON files below.
 - [K8s Cluster Dashboard.json](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus%26Grafana/K8s%20Cluster%20Dashboard.json)
 - [K8s Cluster Dashboard with RPI.json](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus%26Grafana/K8s%20Cluster%20Dashboard%20with%20RPI.json)
 
