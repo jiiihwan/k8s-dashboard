@@ -1,44 +1,44 @@
-# ⚙️ Prometheus & Grafana 설치 가이드
+# ⚙️ Prometheus & Grafana Installation Guide
 
-[**English**](README.md) | [**한국어**](README.ko.md)
+[**English**](README.en.md) | [**한국어**](README.md)
 
-이 문서는 Helm을 사용하여 Prometheus와 Grafana를 설치하고 설정하는 방법을 설명합니다.
-모니터링 스택의 주요 구성 요소(Alertmanager, Grafana, Prometheus 등)는 **마스터 노드**에 설치됩니다.
+This guide explains how to install and configure Prometheus and Grafana using Helm.
+The main components of the monitoring stack (Alertmanager, Grafana, Prometheus, etc.) will be installed on the **Master Node**.
 
-## 🚀 설치 단계 (Installation Steps)
+## 🚀 Installation Steps
 
-### 1. Helm 설치 및 Repo 추가
+### 1. Install Helm & Add Repos
 
-Helm이 설치되어 있지 않다면 먼저 설치합니다.
+Install Helm if it is not already installed.
 ```bash
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 ```
 
-Helm 저장소를 추가하고 업데이트합니다.
+Add Helm repositories and update.
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
 
-### 2. 네임스페이스 생성 및 노드 라벨링
+### 2. Create Namespace & Label Node
 
-모니터링 전용 네임스페이스를 생성합니다.
+Create a dedicated namespace for monitoring.
 ```bash
 kubectl create namespace monitoring
 ```
 
-마스터 노드에 `key=master` 라벨을 추가하여, 모니터링 파드들이 마스터 노드에 배치되도록 준비합니다.
+Label the Master Node with `key=master` to ensure monitoring pods are scheduled there.
 ```bash
 kubectl label nodes <MASTER_NODE_NAME> key=master
-# 확인: kubectl get nodes --show-labels
+# Verify: kubectl get nodes --show-labels
 ```
 
-### 3. Prometheus Stack 설치
+### 3. Install Prometheus Stack
 
-`kube-prometheus-stack`을 설치합니다. 아래 명령어는 `nodeSelector`를 사용하여 주요 컴포넌트를 마스터 노드에 배치하는 설정입니다.
+Install `kube-prometheus-stack`. The command below uses `nodeSelector` to deploy key components to the Master Node.
 
-> **참고**: `values.yaml` 파일을 사용하여 더 상세한 설정을 적용하는 것이 권장됩니다. 상세 내용은 [Helm 설정 가이드](helm_setting.ko.md)를 참고하세요.
+> **Note**: It is recommended to use `values.yaml` for more detailed configurations. See the [Helm Configuration Guide](helm_setting.en.md).
 
 ```bash
 helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring \
@@ -64,19 +64,19 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --n
   --set kube-state-metrics.tolerations[0].effect="NoSchedule"
 ```
 
-설치 확인:
+Verify installation:
 ```bash
 kubectl get svc -n monitoring
 ```
 
 ---
 
-## 🌐 외부 접속 설정 (NodePort)
+## 🌐 External Access (NodePort)
 
-외부에서 Prometheus와 Grafana에 접속할 수 있도록 Service를 NodePort 타입으로 변경합니다.
-(기본 포트: Prometheus `31001`, Grafana `31002` 사용 예시)
+Change the Service type to NodePort to access Prometheus and Grafana externally.
+(Example ports: Prometheus `31001`, Grafana `31002`)
 
-### 1. Prometheus 서비스 수정
+### 1. Edit Prometheus Service
 ```bash
 kubectl edit svc prometheus-kube-prometheus-prometheus -n monitoring
 ```
@@ -86,10 +86,10 @@ spec:
   ports:
     - name: http-web
       port: 9090
-      nodePort: 31001  # 포트 지정
+      nodePort: 31001  # Specify Port
 ```
 
-### 2. Grafana 서비스 수정
+### 2. Edit Grafana Service
 ```bash
 kubectl edit svc prometheus-grafana -n monitoring
 ```
@@ -99,11 +99,11 @@ spec:
   ports:
     - name: http-web
       port: 80
-      nodePort: 31002  # 포트 지정
+      nodePort: 31002  # Specify Port
 ```
 
-### 3. 포트 포워딩 (Linux/IPTables 사용 시)
-필요한 경우 iptables를 사용하여 포트를 개방합니다.
+### 3. Port Forwarding (If using Linux/IPTables)
+Open the ports using iptables if necessary.
 ```bash
 sudo iptables -I INPUT -p tcp --dport 31001 -j ACCEPT
 sudo iptables -I INPUT -p tcp --dport 31002 -j ACCEPT
@@ -111,7 +111,7 @@ sudo iptables -I INPUT -p tcp --dport 31002 -j ACCEPT
 
 ---
 
-## 📚 추가 가이드
+## 📚 Additional Guides
 
-- **[Helm 설정 상세 가이드](helm_setting.ko.md)**: `values.yaml`을 이용한 고급 설정 방법
-- **[트러블슈팅 가이드](problem_solving.ko.md)**: Node Exporter 수집 문제 해결 (Jetson Orin Nano)
+- **[Helm Configuration Guide](helm_setting.md)**: Advanced configuration using `values.yaml`
+- **[Troubleshooting Guide](problem_solving.en.md)**: Node Exporter issues on Jetson Orin Nano
