@@ -1,47 +1,52 @@
-# 🛠️ Nvidia-exporter installation
-- https://github.com/utkuozdemir/nvidia_gpu_exporter 참고
-  - nvidia-smi의 바이너리를 이용해서 메트릭을 수집하는 go lang으로 작성된 exporter 
-- jetson-exporter와 다르게 master node의 일반 Nvidia GPU의 사용량 관찰용이기 때문에 리눅스 백그라운드 서비스로 동작하게 했다.
+# 🛠️ Nvidia Exporter Installation Guide
 
-## 설치
-아래 내용은 위 참고 링크의 [리눅스 서비스 설치방법](https://github.com/utkuozdemir/nvidia_gpu_exporter/blob/master/INSTALL.md)을 그대로 설명한 것이다.
+[**English**](README.md) | [**한국어**](README.ko.md)
 
-### 버전 변수 설정
-https://github.com/utkuozdemir/nvidia_gpu_exporter/releases 에서 최신 릴리즈 버전 확인
+This guide explains how to install `nvidia_gpu_exporter` and register it as a system service to monitor Nvidia GPU usage on **nodes using NVIDIA GPUs**.
 
-ex) 1.3.0 이라면
+> **Reference**: [nvidia_gpu_exporter](https://github.com/utkuozdemir/nvidia_gpu_exporter) is a Go-based exporter that collects GPU metrics using the `nvidia-smi` binary.
+
+## 🚀 Installation Steps
+
+### 1. Set Version & Download
+
+Check the latest version on the [Release Page](https://github.com/utkuozdemir/nvidia_gpu_exporter/releases) and set the variable.
+
 ```bash
 VERSION=1.3.0
-```
-
-### Linux binary 파일 다운로드
-```
 wget https://github.com/utkuozdemir/nvidia_gpu_exporter/releases/download/v${VERSION}/nvidia_gpu_exporter_${VERSION}_linux_x86_64.tar.gz
 ```
 
-### 압축해제
+### 2. Extract & Install
+
 ```bash
 tar -xvzf nvidia_gpu_exporter_${VERSION}_linux_x86_64.tar.gz
+sudo mv nvidia_gpu_exporter /usr/bin/
 ```
 
-### /usr/bin 디렉토리로 이동
-```bash
-mv nvidia_gpu_exporter /usr/bin
-```
+### 3. Create System User
 
-### nvidia_gpu_exporter 라는 이름의 system user and group 만들기 
+Create a dedicated system user for security.
+
 ```bash
 sudo useradd --system --no-create-home --shell /usr/sbin/nologin nvidia_gpu_exporter
-cd /etc/systemd/system
 ```
 
-### 서비스 파일 생성
+---
+
+## ⚙️ Register Systemd Service
+
+Create a systemd unit file to run Nvidia Exporter as a background service.
+
+### 1. Create Service File
+
 ```bash
-vim nvidia_gpu_exporter.service
+sudo vim /etc/systemd/system/nvidia_gpu_exporter.service
 ```
 
-아래 내용을 그대로 붙혀넣기
-```
+Paste the following content:
+
+```ini
 [Unit]
 Description=Nvidia GPU Exporter
 After=network-online.target
@@ -63,14 +68,33 @@ RestartSec=1
 WantedBy=multi-user.target
 ```
 
-### 데몬 리로드
+### 2. Enable & Start Service
+
 ```bash
 sudo systemctl daemon-reload
-```
-
-### 활성화 및 설치 확인
-
-```
 sudo systemctl enable --now nvidia_gpu_exporter
+```
+
+### 3. Verify Status
+
+```bash
 sudo systemctl status nvidia_gpu_exporter
 ```
+
+You should see `Active: active (running)`.
+
+---
+
+## 🐳 Deploy as Docker/Pod (Alternative)
+
+Instead of using a Systemd service, you can build a Docker image and deploy it as a Kubernetes **Pod** or **DaemonSet**.
+
+1.  **Create Dockerfile**:
+    ```dockerfile
+    FROM nvidia/cuda:12.0.0-base-ubuntu22.04
+    COPY nvidia_gpu_exporter /usr/bin/nvidia_gpu_exporter
+    ENTRYPOINT ["/usr/bin/nvidia_gpu_exporter"]
+    ```
+2.  **Build & Push**: Build the image and push it to your registry.
+3.  **Deploy**: Create a YAML file for a Pod or DaemonSet using this image and deploy it to your cluster.
+

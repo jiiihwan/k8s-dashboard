@@ -1,17 +1,34 @@
-# helm values.yaml
-- helm으로 설치할 때 설정값들을 적용하는 파일
-- prometheus-stack의 원본 values.yaml은 2000줄이 넘어 수정하기 힘들다
-- 그래서 USER-SUPPLIED VALUES: 옵션으로 필요한 부분만 적고 `helm upgrade`로 업데이트 시켜준다
+# 🛠️ Helm Configuration Guide (values.yaml)
 
-## 주요 수정점
-1. nodeSelector로 워커노드말고 마스터 노드에 prometheus-stack의 요소들이 설치되도록 함
-2. grafana의 자동 새로고침 주기는 원래 최소가 5초 이지만 1초로도 설정 가능하게 함
-3. prometheus가 master node의 nvidia-exporter를 감지할 수 있게 `additionalScrapeConfigs` 설정
-   - 추가로 수집주기는 1초로 설정
-4. node-exporter의 수집주기를 1초로 설정
+[**English**](helm_setting.md) | [**한국어**](helm_setting.ko.md)
 
-### values.yaml 파일
-[values.yaml](values.yaml) 참고
+When installing `kube-prometheus-stack` using Helm, you can customize configurations by modifying the `values.yaml` file.
+Since the original `values.yaml` is very large, it is efficient to write only the changes in a separate file.
 
-### 작성 후 적용
-`helm upgrade prometheus prometheus-community/kube-prometheus-stack -n monitoring -f values.yaml`
+## 📝 Key Changes
+
+The main configurations applied in this project are:
+
+1.  **NodeSelector**: Pin major monitoring components to the **Master Node**.
+2.  **Grafana Refresh Rate**: Reduce the minimum dashboard refresh interval from 5s to **1s**.
+3.  **Additional Scrape Config**: Configure Prometheus to scrape metrics from `nvidia-exporter` on the Master Node.
+4.  **Shorten Intervals**: Set scrape intervals for Prometheus and Node Exporter to **1s** for better real-time monitoring.
+
+## 📄 values.yaml Example
+
+Refer to [values.yaml](values.yaml) for the full configuration used.
+
+> **Tip**: To extract the currently applied values:
+> ```bash
+> helm get values prometheus --namespace monitoring > current-values.yaml
+> ```
+
+## ⚙️ Applying Configuration
+
+Upgrade the release using your custom `values.yaml` file.
+
+```bash
+helm upgrade prometheus prometheus-community/kube-prometheus-stack \
+  --namespace monitoring \
+  -f values.yaml
+```
