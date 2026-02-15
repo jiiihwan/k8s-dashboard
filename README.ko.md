@@ -27,7 +27,7 @@
 1.  **Prometheus Operator**: Kubernetes 내에서 Prometheus 관련 모니터링 리소스를 관리하는 컨트롤러입니다. 사용자가 Prometheus, ServiceMonitor 등을 Custom Resource(CR)로 정의하면, Operator가 이를 감지하여 설정을 자동으로 업데이트합니다.
 2.  **DaemonSet**: 각 워커 노드에 Exporter를 자동으로 배포하는 역할을 합니다. `device=jetson`과 같은 특정 태그가 붙은 Jetson Orin Nano 노드에는 `nodeSelector`를 통해 적절한 Exporter 파드가 배치되도록 보장합니다. 노드가 재시작되거나 파드가 삭제되어도 DaemonSet이 자동으로 복구합니다. 각 워커 노드에서는 일반적인 시스템 메트릭을 수집하는 node-exporter와, GPU 사용량 등 Jetson 특화 메트릭을 수집하는 jetson-exporter가 함께 실행됩니다.
 3.  **ServiceMonitor**: Prometheus Operator가 관리하는 Custom Resource로, Prometheus가 Exporter로부터 메트릭을 자동으로 검색(Discover)하고 수집(Scrape)할 수 있게 합니다. 각 Exporter는 유동적인 IP를 가진 파드에서 실행되므로, 고정된 ClusterIP로 접근할 수 있도록 Kubernetes Service를 생성합니다. 이 Service는 `app=jetson-exporter`와 같은 라벨 셀렉터를 사용해 올바른 파드를 가리킵니다. Prometheus Operator는 ServiceMonitor를 지속적으로 감시하며, 특정 라벨과 일치하는 Service를 찾아 해당 Exporter의 `/metrics` 엔드포인트를 수집하도록 Prometheus를 설정합니다. ServiceMonitor는 Operator가 인식할 수 있도록 `release=prometheus`와 같은 라벨을 포함해야 합니다.
-4.  **Exporters**: 각 Exporter는 `/metrics` HTTP 엔드포인트에서 시스템 메트릭을 Prometheus 호환 형식으로 노출합니다. Prometheus는 풀(pull) 방식을 사용하여 주기적으로 이 엔드포인트를 긁어(scrape) 모든 시계열 데이터를 내부 TSDB(Time Series Database)에 저장합니다.
+4.  **Exporters**: 각 Exporter는 `/metrics` HTTP 엔드포인트에서 시스템 메트릭을 Prometheus 호환 형식으로 노출합니다. Prometheus는 pull 방식을 사용하여 주기적으로 이 엔드포인트를 scrape하여 모든 시계열 데이터를 내부 TSDB(Time Series Database)에 저장합니다.
 5.  **Grafana**: Prometheus가 수집한 데이터를 PromQL 쿼리를 사용하여 시각화합니다. 사용자는 각 노드 및 전체 클러스터의 CPU, GPU, 메모리, 네트워크 사용량 등을 실시간으로 모니터링하여 리소스 활용 상태를 직관적으로 파악할 수 있습니다.
 
 ## ⚙️ 하드웨어 및 환경 구성
