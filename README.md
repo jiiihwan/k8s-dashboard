@@ -60,10 +60,10 @@ Kubernetes 클러스터 설정이나 기본 대시보드 구성이 필요한 경
 
 ![Grafana Dashboard](https://github.com/user-attachments/assets/f8c5a38a-8382-4edc-b511-a6b56bd2e01a)
 
--   **상단**: CPU, GPU, RAM, Network 순서
--   **좌측 열**: 전체 클러스터, 마스터 노드, 워커 노드 순
--   **우측 열**: Orin Nano의 코어별 CPU 사용량
--   **차트**: 노드별 네트워크 사용량 비율
+-   **상단부터 아래로**: CPU, GPU, RAM, Network 순서
+-   **왼쪽 열 부터**: 전체 클러스터, 마스터 노드, 워커 노드 순
+-   **우측 상단**: Orin Nano의 코어별 CPU 사용량
+-   **파이 차트**: 노드별 네트워크 사용량 비율
 
 **JSON 템플릿:**
 -   [K8s Cluster Dashboard.json](https://github.com/jiiihwan/k8s-dashboard/blob/main/Prometheus%26Grafana/K8s%20Cluster%20Dashboard.json)
